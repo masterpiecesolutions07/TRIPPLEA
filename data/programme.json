@@ -1,0 +1,157 @@
+{
+  "notes": "January 2027 cohort. Class times and the in-person venue are sent to enrolled students.",
+  "cohort": {
+    "name": "January 2027",
+    "start": "2027-01-11T09:00:00+03:00",
+    "end": "2027-04-11T18:00:00+03:00",
+    "provisional": true,
+    "seatsTotal": 40,
+    "seatsTaken": 27,
+    "timezoneLabel": "09:00 UTC+3"
+  },
+  "plans": [
+    {
+      "id": "starter",
+      "name": "Starter",
+      "priceLabel": "From 120 USD",
+      "price": 120
+    },
+    {
+      "id": "premium",
+      "name": "Premium",
+      "priceLabel": "Above 120 USD",
+      "price": null
+    },
+    {
+      "id": "custom",
+      "name": "Custom",
+      "priceLabel": "Request a price",
+      "price": null
+    }
+  ],
+  "months": [
+    {
+      "id": "m1",
+      "title": "Month 1 · Beginner",
+      "summary": "Language, charts, and the first risk habits.",
+      "weeks": [
+        {
+          "id": "m1w1",
+          "title": "Week 1 · Forex basics",
+          "unlock": "2027-01-11",
+          "topics": ["What the forex market is", "Currency pairs, pips, and lot sizes", "Trading sessions and why time of day matters"]
+        },
+        {
+          "id": "m1w2",
+          "title": "Week 2 · Platforms and orders",
+          "unlock": "2027-01-18",
+          "topics": ["A first look at a charting platform", "Market, limit, and stop orders", "How a demo environment is used for practice"]
+        },
+        {
+          "id": "m1w3",
+          "title": "Week 3 · Charts and candlesticks",
+          "unlock": "2027-01-25",
+          "topics": ["Timeframes", "How to read a candlestick", "Common candle shapes as descriptions, not signals"]
+        },
+        {
+          "id": "m1w4",
+          "title": "Week 4 · Risk basics",
+          "unlock": "2027-02-01",
+          "topics": ["Why position size matters", "A simple risk limit for practice", "Standing aside when the plan is unclear"]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "title": "Month 2 · Intermediate",
+      "summary": "Structure, process, and psychology.",
+      "weeks": [
+        {
+          "id": "m2w1",
+          "title": "Week 1 · Technical analysis foundations",
+          "unlock": "2027-02-08",
+          "topics": ["Support and resistance as areas", "Trend as a description of structure", "Keeping indicators secondary to the rule"]
+        },
+        {
+          "id": "m2w2",
+          "title": "Week 2 · Market structure",
+          "unlock": "2027-02-15",
+          "topics": ["Swings and breaks of structure", "Mapping a chart before a session", "Invalidation: where the idea is wrong"]
+        },
+        {
+          "id": "m2w3",
+          "title": "Week 3 · Entries and exits",
+          "unlock": "2027-02-22",
+          "topics": ["Writing entry rules in advance", "Exits that belong to the same plan", "Avoiding impulsive mid-trade changes"]
+        },
+        {
+          "id": "m2w4",
+          "title": "Week 4 · Risk and psychology",
+          "unlock": "2027-03-01",
+          "topics": ["Loss limits for a day and a week", "Revenge trading and how a routine interrupts it", "Review questions after a losing session"]
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "title": "Month 3 · Advanced",
+      "summary": "Law and Order execution, journaling, and a written plan.",
+      "weeks": [
+        {
+          "id": "m3w1",
+          "title": "Week 1 · Law and Order execution",
+          "unlock": "2027-03-08",
+          "topics": ["The rule set taught in the mentorship", "Checklist before a session", "When the correct action is no trade"]
+        },
+        {
+          "id": "m3w2",
+          "title": "Week 2 · Advanced setups inside the rules",
+          "unlock": "2027-03-15",
+          "topics": ["Setups that still obey the same risk rules", "Context from forex, gold, and indices lessons", "What is reserved for live review"]
+        },
+        {
+          "id": "m3w3",
+          "title": "Week 3 · Journaling",
+          "unlock": "2027-03-22",
+          "topics": ["Recording the rule, the risk, and the behaviour", "Weekly review format", "Separating process from outcome"]
+        },
+        {
+          "id": "m3w4",
+          "title": "Week 4 · Live sessions and a trading plan",
+          "unlock": "2027-03-29",
+          "topics": ["Supervised live sessions", "Writing a one-page trading plan", "What continues after the three months"]
+        }
+      ]
+    }
+  ],
+  "sessions": [
+    {
+      "id": "s1",
+      "title": "Cohort kickoff",
+      "start": "2027-01-11T18:00:00+03:00",
+      "platform": "Zoom",
+      "mode": "Online / Physical"
+    },
+    {
+      "id": "s2",
+      "title": "Charts and candlesticks workshop",
+      "start": "2027-01-25T18:00:00+03:00",
+      "platform": "Google Meet",
+      "mode": "Online / Physical"
+    },
+    {
+      "id": "s3",
+      "title": "Risk and psychology review",
+      "start": "2027-03-01T18:00:00+03:00",
+      "platform": "Zoom",
+      "mode": "Online / Physical"
+    },
+    {
+      "id": "s4",
+      "title": "Law and Order live session",
+      "start": "2027-03-29T18:00:00+03:00",
+      "platform": "Google Meet",
+      "mode": "Online / Physical"
+    }
+  ]
+}

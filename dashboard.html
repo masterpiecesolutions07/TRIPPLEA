@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard · Tripple A Mentorship</title>
+  <meta name="description" content="Your Tripple A student dashboard for the January 2027 mentorship.">
+  <meta name="theme-color" content="#0B1020">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dashboard · Tripple A Mentorship">
+  <meta property="og:description" content="Your Tripple A student dashboard for the January 2027 mentorship.">
+  <meta property="og:locale" content="en_KE">
+  <link rel="icon" href="assets/icons/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("triplea_theme");
+        if (theme === "light" || theme === "dark") document.documentElement.setAttribute("data-theme", theme);
+        if (sessionStorage.getItem("triplea_seen")) document.documentElement.classList.add("is-ready");
+      } catch (e) {}
+    })();
+  </script>
+  <meta name="robots" content="noindex">
+  <script>
+    (function () {
+      try {
+        var raw = localStorage.getItem("triplea_session") || sessionStorage.getItem("triplea_session");
+        if (!raw) location.replace("login.html?next=dashboard.html");
+      } catch (e) {
+        location.replace("login.html?next=dashboard.html");
+      }
+    })();
+  </script>
+</head>
+<body data-page="dashboard">
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="preloader" id="preloader">
+  <img class="preloader__logo" src="assets/images/logo-mark.png" width="88" height="88" alt="">
+  <p>Tripple A</p>
+</div>
+<header class="site-header" id="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a class="logo" href="index.html">
+      <img class="logo__img" src="assets/images/logo-mark.png" width="48" height="48" alt="">
+      <span class="logo__words">
+        <span class="logo__name">Tripple A</span>
+        <span class="logo__tag">Growth &amp; Confidence</span>
+      </span>
+    </a>
+    <div class="nav__panel" id="nav-panel">
+      <ul class="nav__links"><li><a class="nav__link" href="index.html">Home</a></li><li><a class="nav__link" href="about.html">About</a></li><li><a class="nav__link" href="strategy.html">Strategy</a></li><li><a class="nav__link" href="programme.html">Programme</a></li><li><a class="nav__link" href="updates.html">Updates</a></li><li><a class="nav__link" href="contact.html">Contact</a></li></ul>
+      <div class="nav__cta">
+        <a class="btn btn--ghost" id="login-link" href="login.html">Login</a>
+        <a class="btn btn--primary" href="register.html">Join Now</a>
+      </div>
+    </div>
+    <div class="nav__tools">
+      <div class="notify">
+        <button class="icon-btn" id="notify-btn" type="button" aria-expanded="false" aria-controls="notify-panel" aria-label="Notifications">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-bell"></use></svg>
+          <span class="notify__badge" id="notify-badge" hidden>0</span>
+        </button>
+        <div class="notify__panel" id="notify-panel" hidden>
+          <div class="notify__head">
+            <p id="notify-label">Latest updates</p>
+            <a href="updates.html">View all</a>
+          </div>
+          <ul class="notify__list" id="notify-list" aria-labelledby="notify-label"></ul>
+        </div>
+      </div>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to light mode">
+        <svg class="icon icon--sun" aria-hidden="true"><use href="assets/icons/sprite.svg#i-sun"></use></svg>
+        <svg class="icon icon--moon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-moon"></use></svg>
+      </button>
+      <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
+        <span class="visually-hidden">Menu</span>
+        <svg class="icon icon--menu" aria-hidden="true"><use href="assets/icons/sprite.svg#i-menu"></use></svg>
+        <svg class="icon icon--close" aria-hidden="true"><use href="assets/icons/sprite.svg#i-close"></use></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+<main id="main" tabindex="-1">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Student area</p>
+    <h1 id="welcome">Welcome</h1>
+    <p class="lede">Your January 2027 mentorship: progress, modules, and the next session.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container dash-grid">
+    <div class="stack">
+      <article class="card ring-wrap">
+        <svg class="ring" id="progress-ring" viewBox="0 0 120 120" role="img" aria-label="Programme progress 0 percent of the 3-month cohort">
+          <defs>
+            <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#7C3AED"/>
+              <stop offset="1" stop-color="#06B6D4"/>
+            </linearGradient>
+          </defs>
+          <circle class="ring__track" cx="60" cy="60" r="52"></circle>
+          <circle class="ring__value" id="ring-value" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"></circle>
+        </svg>
+        <p><strong id="progress-percent">0%</strong> of the 3 months</p>
+        <p id="progress-note" class="note"></p>
+      </article>
+      <article class="card" style="padding:1rem">
+        <h2>Before the cohort</h2>
+        <div class="stack" style="margin-top:0.7rem">
+          <label class="check"><input type="checkbox" checked disabled> <span>Demo account created</span></label>
+          <label class="check"><input type="checkbox" data-prep="strategy"> <span>I have read the <a href="strategy.html">Law and Order overview</a></span></label>
+          <label class="check"><input type="checkbox" data-prep="risk"> <span>I have read the risk disclaimer on the <a href="programme.html#pricing">programme page</a></span></label>
+        </div>
+      </article>
+      <article class="card">
+        <h2 style="padding:1rem 1rem 0">Modules</h2>
+        <div id="module-list"><p class="note" style="padding:1rem">Loading modules…</p></div>
+      </article>
+    </div>
+    <div class="stack">
+      <article class="card profile">
+        <div class="cluster" style="align-items:center">
+          <div class="avatar" id="avatar" aria-hidden="true">AA</div>
+          <div>
+            <h2>Profile</h2>
+            <p class="note">January 2027 cohort</p>
+          </div>
+        </div>
+        <div id="profile-details" class="stack"></div>
+        <button class="btn btn--ghost" id="logout" type="button">Log out</button>
+      </article>
+      <article class="card" style="padding:1rem">
+        <h2>Upcoming sessions</h2>
+        <p id="session-countdown" class="note" style="margin:0.6rem 0">Loading the next session…</p>
+        <div id="session-list"></div>
+      </article>
+      <article class="card" style="padding:1rem">
+        <h2>Notifications</h2>
+        <div id="personal-notes"></div>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer__grid">
+    <section>
+      <a class="logo" href="index.html">
+        <img class="logo__img" src="assets/images/logo-mark.png" width="48" height="48" alt="">
+        <span class="logo__words"><span class="logo__name">Tripple A</span><span class="logo__tag">Growth &amp; Confidence</span></span>
+      </a>
+      <p class="note" style="margin-top:0.8rem">A 3-month forex mentorship with Abdullahi Abukar Ahmed, from beginner to advanced.</p>
+      <p class="credit-line">Strategy compiled by Grand Mentor Abdiwali Moalimuu.</p>
+    </section>
+    <nav aria-label="Footer">
+      <h2 class="footer__title">Explore</h2>
+      <ul class="footer__links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="strategy.html">Law and Order</a></li>
+        <li><a href="programme.html">Programme</a></li>
+        <li><a href="updates.html">Updates</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+    </nav>
+    <section>
+      <h2 class="footer__title">Contact</h2>
+      <ul class="footer__links">
+        <li><a href="https://www.tiktok.com/@tripple.a75" target="_blank" rel="noopener noreferrer">TikTok @tripple.a75</a></li>
+        <li><a href="contact.html">Write to Tripple A</a></li>
+        <li><a href="programme.html">January 2027 cohort</a></li>
+      </ul>
+      <ul class="socials socials--row socials--icons" aria-label="Social media" style="margin-top:0.8rem">
+        <li><a class="social social--icon" href="contact.html#socials" data-channel="tiktok" aria-label="TikTok"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-tiktok"></use></svg></a></li>
+        <li><a class="social social--icon" href="contact.html#socials" data-channel="whatsapp" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></a></li>
+        <li><a class="social social--icon" href="contact.html#socials" data-channel="facebook" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-facebook"></use></svg></a></li>
+        <li><a class="social social--icon" href="contact.html#socials" data-channel="youtube" aria-label="YouTube"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-youtube"></use></svg></a></li>
+        <li><a class="social social--icon" href="contact.html#socials" data-channel="discord" aria-label="Discord"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-discord"></use></svg></a></li>
+        <li><a class="social social--icon" href="contact.html#socials" data-channel="instagram" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-instagram"></use></svg></a></li>
+      </ul>
+    </section>
+    <section>
+      <h2 class="footer__title">Updates list</h2>
+      <form class="form" id="newsletter-form">
+        <div class="hp" aria-hidden="true">
+          <label for="newsletter-company">Company</label>
+          <input id="newsletter-company" name="company" tabindex="-1" autocomplete="off">
+        </div>
+        <label class="field" for="newsletter-email">
+          <span class="visually-hidden">Email for updates</span>
+          <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="Email address" required>
+        </label>
+        <button class="btn btn--primary" type="submit">Join the list</button>
+        <p id="newsletter-status" class="note" role="status"></p>
+      </form>
+    </section>
+  </div>
+  <div class="container">
+    <p class="disclaimer"><strong>Risk disclaimer.</strong> Forex and CFD trading carries a high risk of loss and is not suitable for everyone. You can lose some or all of the money you deposit. This website is education and mentorship information. It is not financial advice, not a signal service, and not a promise of profit. Past performance does not guarantee future results.</p>
+    <div class="footer__bar">
+      <p>&copy; <span id="year">2026</span> Abdullahi Abukar Ahmed · Tripple A.</p>
+      <p><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></p>
+    </div>
+  </div>
+</footer>
+<a class="whatsapp-float" id="whatsapp-float" href="contact.html#direct" aria-label="Message Tripple A"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></a>
+<button class="to-top" id="to-top" type="button" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-arrow-up"></use></svg></button>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

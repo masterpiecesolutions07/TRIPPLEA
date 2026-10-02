@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Law and Order Strategy · Tripple A</title>
+  <meta name="description" content="An overview of the Law and Order trading strategy compiled by Grand Mentor Abdiwali Moalimuu and taught by Tripple A.">
+  <meta name="theme-color" content="#0B1020">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Law and Order Strategy · Tripple A">
+  <meta property="og:description" content="An overview of the Law and Order trading strategy compiled by Grand Mentor Abdiwali Moalimuu and taught by Tripple A.">
+  <meta property="og:locale" content="en_KE">
+  <link rel="icon" href="assets/icons/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("triplea_theme");
+        if (theme === "light" || theme === "dark") document.documentElement.setAttribute("data-theme", theme);
+        if (sessionStorage.getItem("triplea_seen")) document.documentElement.classList.add("is-ready");
+      } catch (e) {}
+    })();
+  </script>
+  
+</head>
+<body data-page="strategy">
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="preloader" id="preloader">
+  <img class="preloader__logo" src="assets/images/logo-mark.png" width="88" height="88" alt="">
+  <p>Tripple A</p>
+</div>
+<header class="site-header" id="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a class="logo" href="index.html">
+      <img class="logo__img" src="assets/images/logo-mark.png" width="48" height="48" alt="">
+      <span class="logo__words">
+        <span class="logo__name">Tripple A</span>
+        <span class="logo__tag">Growth &amp; Confidence</span>
+      </span>
+    </a>
+    <div class="nav__panel" id="nav-panel">
+      <ul class="nav__links"><li><a class="nav__link" href="index.html">Home</a></li><li><a class="nav__link" href="about.html">About</a></li><li><a class="nav__link is-active" href="strategy.html" aria-current="page">Strategy</a></li><li><a class="nav__link" href="programme.html">Programme</a></li><li><a class="nav__link" href="updates.html">Updates</a></li><li><a class="nav__link" href="contact.html">Contact</a></li></ul>
+      <div class="nav__cta">
+        <a class="btn btn--ghost" id="login-link" href="login.html">Login</a>
+        <a class="btn btn--primary" href="register.html">Join Now</a>
+      </div>
+    </div>
+    <div class="nav__tools">
+      <div class="notify">
+        <button class="icon-btn" id="notify-btn" type="button" aria-expanded="false" aria-controls="notify-panel" aria-label="Notifications">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-bell"></use></svg>
+          <span class="notify__badge" id="notify-badge" hidden>0</span>
+        </button>
+        <div class="notify__panel" id="notify-panel" hidden>
+          <div class="notify__head">
+            <p id="notify-label">Latest updates</p>
+            <a href="updates.html">View all</a>
+          </div>
+          <ul class="notify__list" id="notify-list" aria-labelledby="notify-label"></ul>
+        </div>
+      </div>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to light mode">
+        <svg class="icon icon--sun" aria-hidden="true"><use href="assets/icons/sprite.svg#i-sun"></use></svg>
+        <svg class="icon icon--moon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-moon"></use></svg>
+      </button>
+      <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
+        <span class="visually-hidden">Menu</span>
+        <svg class="icon icon--menu" aria-hidden="true"><use href="assets/icons/sprite.svg#i-menu"></use></svg>
+        <svg class="icon icon--close" aria-hidden="true"><use href="assets/icons/sprite.svg#i-close"></use></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+<main id="main" tabindex="-1">
+
+
+<div class="ticker" aria-label="Sample prices for illustration. Not a live market feed.">
+  <p class="ticker__flag">Sample</p>
+  <div class="ticker__mask"><div class="ticker__track" id="ticker-track"></div></div>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="crumbs"><a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>Strategy</span></p>
+    <p class="eyebrow">Law and Order</p>
+    <h1>Rules, then the discipline to follow them.</h1>
+    <p class="lede">This page is a public overview. The detailed rule set is taught inside the 3-month mentorship, with credit to Abdiwali Moalimuu as the strategy’s compiler.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <article class="credit card">
+      <img class="mentor-photo mentor-photo--moalimuu" src="assets/images/moalimuu.png" width="720" height="960" alt="Abdiwali Moalimuu, Grand Mentor of Law and Order">
+      <div class="prose">
+        <p class="eyebrow">Strategy credit</p>
+        <h2>Abdiwali Moalimuu</h2>
+        <p><strong>Compiler and Grand Mentor of the Law and Order strategy.</strong></p>
+        <p>Abdiwali Moalimuu compiled Law and Order. Tripple A teaches that framework. Law is the set of rules a student can point to before a session. Order is the discipline, the position size, and the decision to stand aside. The detailed playbook is taught inside the mentorship, with his name kept on the work.</p>
+        <p class="credit-line">Strategy compiled by Grand Mentor Abdiwali Moalimuu.</p>
+      </div>
+    </article>
+  </div>
+</section>
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <header class="section__head">
+      <h2>What the name means</h2>
+      <p class="lede">Law is the rule you can point to. Order is the risk limit and the routine that protect it. The full playbook is taught in the mentorship. This page is the public overview, credited to Abdiwali Moalimuu.</p>
+    </header>
+    <div class="card-grid">
+      <article class="card feature"><h3>Law</h3><p class="note">The rules: what a valid idea looks like, what is ignored, and what must be true before a student acts. The rules are learned in class, not published as a signal card on this site.</p></article>
+      <article class="card feature"><h3>Order</h3><p class="note">The discipline and risk management: size, loss limits, session timing, and the decision to do nothing when the rule is absent.</p></article>
+    </div>
+    <div class="tabs" data-tabs style="margin-top:1.5rem">
+      <div role="tablist" aria-label="Core principles">
+        <button role="tab" id="tab-law" aria-controls="panel-law" aria-selected="true" tabindex="0" type="button">Law</button>
+        <button role="tab" id="tab-order" aria-controls="panel-order" aria-selected="false" tabindex="-1" type="button">Order</button>
+        <button role="tab" id="tab-review" aria-controls="panel-review" aria-selected="false" tabindex="-1" type="button">Review</button>
+        <button role="tab" id="tab-scope" aria-controls="panel-scope" aria-selected="false" tabindex="-1" type="button">Scope</button>
+      </div>
+      <div role="tabpanel" id="panel-law" aria-labelledby="tab-law"><p>Students write the rule in their own words and can point to it before a session. If they cannot explain the rule, they are not ready to use it.</p></div>
+      <div role="tabpanel" id="panel-order" aria-labelledby="tab-order" hidden><p>Every practice decision has a maximum loss attached before entry. Changing the plan mid-trade is treated as a break in order, even when the trade later wins.</p></div>
+      <div role="tabpanel" id="panel-review" aria-labelledby="tab-review" hidden><p>Weekly reviews read the journal: the rule used, the risk taken, and whether the student followed the plan. A winning trade that broke the rule is not marked as a success.</p></div>
+      <div role="tabpanel" id="panel-scope" aria-labelledby="tab-scope" hidden><p>Lessons use forex majors, gold, and indices as examples. The page does not rank those markets or tell you which one to trade.</p></div>
+    </div>
+  </div>
+</section>
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <header class="section__head">
+      <h2>How a lesson marks a chart</h2>
+      <p class="lede">These drawings are illustrations. They are not trade recommendations and they are not historical results.</p>
+    </header>
+    <div class="card-grid">
+      <article class="chart-card card">
+        <div class="chart-visual" aria-hidden="true">
+          <span class="bar" style="height:40%"></span><span class="bar bar--down" style="height:65%"></span><span class="bar" style="height:50%"></span><span class="bar" style="height:78%"></span><span class="bar bar--down" style="height:35%"></span><span class="bar" style="height:60%"></span>
+        </div>
+        <h3>A rule needs a boundary</h3>
+        <p class="note">In class, a chart is marked to show where the idea is invalid. The annotation is part of the lesson, not an entry instruction.</p>
+      </article>
+      <article class="chart-card card">
+        <div class="chart-visual" aria-hidden="true">
+          <span class="bar bar--down" style="height:70%"></span><span class="bar bar--down" style="height:55%"></span><span class="bar" style="height:30%"></span><span class="bar" style="height:48%"></span><span class="bar" style="height:72%"></span><span class="bar bar--down" style="height:40%"></span>
+        </div>
+        <h3>Order limits the size</h3>
+        <p class="note">The same illustration can host a risk note: how much of the account a practice idea is allowed to lose. The number is chosen in the student’s plan.</p>
+      </article>
+      <article class="chart-card card">
+        <div class="chart-visual" aria-hidden="true">
+          <span class="bar" style="height:35%"></span><span class="bar" style="height:45%"></span><span class="bar bar--down" style="height:80%"></span><span class="bar" style="height:42%"></span><span class="bar bar--down" style="height:58%"></span><span class="bar" style="height:66%"></span>
+        </div>
+        <h3>No trade is a valid outcome</h3>
+        <p class="note">If the rule is not present, the lesson records a stand-aside. That record belongs in the journal beside any trades that were taken.</p>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="cta-band card">
+      <h2>Learn the framework inside the mentorship</h2>
+      <p class="lede">The January 2027 cohort is the next intake. Plans start from 120 USD.</p>
+      <a class="btn btn--gold" href="register.html">Join the Mentorship</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer__grid">
+    <section>
+      <a class="logo" href="index.html">
+        <img class="logo__img" src="assets/images/logo-mark.png" width="48" height="48" alt="">
+        <span class="logo__words"><span class="logo__name">Tripple A</span><span class="logo__tag">Growth &amp; Confidence</span></span>
+      </a>
+      <p class="note" style="margin-top:0.8rem">A 3-month forex mentorship with Abdullahi Abukar Ahmed, from beginner to advanced.</p>
+      <p class="credit-line">Strategy compiled by Grand Mentor Abdiwali Moalimuu.</p>
+    </section>
+    <nav aria-label="Footer">
+      <h2 class="footer__title">Explore</h2>
+      <ul class="footer__links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="strategy.html">Law and Order</a></li>
+        <li><a href="programme.html">Programme</a></li>
+        <li><a href="updates.html">Updates</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+    </nav>
+    <section>
+      <h2 class="footer__title">Contact</h2>
+      <ul class="footer__links">
+        <li><a href="https://www.tiktok.com/@tripple.a75" target="_blank" rel="noopener noreferrer">TikTok @tripple.a75</a></li>
+        <li><a href="contact.html">Write to Tripple A</a></li>
+        <li><a href="programme.html">January 2027 cohort</a></li>
+      </ul>
+      <ul class="socials socials--row socials--icons" aria-label="Social media" style="margin-top:0.8rem">
+        <li><a class="social social--icon" href="contact.html#socials" data-channel="tiktok" aria-label="TikTok"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-tiktok"></use></svg></a></li>
+        <li><a class="social social--icon" href="contact.html#socials" data-channel="whatsapp" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></a></li>
+        <li><a class="social social--icon" href="contact.html#socials" data-channel="facebook" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-facebook"></use></svg></a></li>
+        <li><a class="social social--icon" href="contact.html#socials" data-channel="youtube" aria-label="YouTube"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-youtube"></use></svg></a></li>
+        <li><a class="social social--icon" href="contact.html#socials" data-channel="discord" aria-label="Discord"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-discord"></use></svg></a></li>
+        <li><a class="social social--icon" href="contact.html#socials" data-channel="instagram" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-instagram"></use></svg></a></li>
+      </ul>
+    </section>
+    <section>
+      <h2 class="footer__title">Updates list</h2>
+      <form class="form" id="newsletter-form">
+        <div class="hp" aria-hidden="true">
+          <label for="newsletter-company">Company</label>
+          <input id="newsletter-company" name="company" tabindex="-1" autocomplete="off">
+        </div>
+        <label class="field" for="newsletter-email">
+          <span class="visually-hidden">Email for updates</span>
+          <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="Email address" required>
+        </label>
+        <button class="btn btn--primary" type="submit">Join the list</button>
+        <p id="newsletter-status" class="note" role="status"></p>
+      </form>
+    </section>
+  </div>
+  <div class="container">
+    <p class="disclaimer"><strong>Risk disclaimer.</strong> Forex and CFD trading carries a high risk of loss and is not suitable for everyone. You can lose some or all of the money you deposit. This website is education and mentorship information. It is not financial advice, not a signal service, and not a promise of profit. Past performance does not guarantee future results.</p>
+    <div class="footer__bar">
+      <p>&copy; <span id="year">2026</span> Abdullahi Abukar Ahmed · Tripple A.</p>
+      <p><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></p>
+    </div>
+  </div>
+</footer>
+<a class="whatsapp-float" id="whatsapp-float" href="contact.html#direct" aria-label="Message Tripple A"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-whatsapp"></use></svg></a>
+<button class="to-top" id="to-top" type="button" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-arrow-up"></use></svg></button>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
