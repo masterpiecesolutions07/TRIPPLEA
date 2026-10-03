@@ -1,0 +1,24 @@
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const required = ["MONGO_URI", "JWT_ACCESS_SECRET", "JWT_REFRESH_SECRET"];
+
+export function readEnv(source = process.env) {
+  const missing = required.filter((key) => !source[key]);
+  if (missing.length) {
+    throw new Error(`Missing environment variables: ${missing.join(", ")}. Copy backend/.env.example to backend/.env.`);
+  }
+  return {
+    port: Number(source.PORT) || 5000,
+    nodeEnv: source.NODE_ENV || "development",
+    mongoUri: source.MONGO_URI,
+    jwtAccessSecret: source.JWT_ACCESS_SECRET,
+    jwtRefreshSecret: source.JWT_REFRESH_SECRET,
+    accessExpires: source.ACCESS_EXPIRES || "15m",
+    refreshExpires: source.REFRESH_EXPIRES || "7d",
+    frontendUrl: source.FRONTEND_URL || "http://localhost:5173"
+  };
+}
+
+export const env = readEnv();
