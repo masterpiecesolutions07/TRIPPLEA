@@ -25,6 +25,12 @@ const settingsSchema = new mongoose.Schema(
       type: String,
       default: "Strategy compiled by Grand Mentor Abdiwali Moalimuu."
     },
+    faqsManaged: { type: Boolean, default: false },
+    faqs: [{
+      id: { type: String, required: true },
+      question: { type: String, required: true },
+      answer: { type: String, required: true }
+    }],
     brand: { type: String, default: "Tripple A" },
     mentorName: { type: String, default: "Abdullahi Abukar Ahmed" }
   },

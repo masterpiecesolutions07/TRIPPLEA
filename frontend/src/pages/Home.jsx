@@ -1,27 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import updates from "../data/updates.json";
-import { Accordion } from "../components/Accordion.jsx";
+import { FaqList } from "../components/FaqList.jsx";
 import { Countdown } from "../components/Countdown.jsx";
 import { Icon } from "../components/Icon.jsx";
 import { ProofSections } from "../components/ProofSections.jsx";
 
-const SLIDES = [
-  ["You leave with a rule you can explain before the session starts. If you cannot point to it, you are not ready to use it.", "Law", "The Tripple A standard"],
-  ["Every practice idea has a loss limit written first. Standing aside is a successful decision when the rule is absent.", "Order", "Risk and routine"],
-  ["The weekly review reads your journal: the rule, the risk, and whether you followed the plan. A win that broke the rule is not treated as success.", "Review", "Online and in person"]
-];
-
-const FAQ = [
-  ["q1", "Who is Tripple A?", "Abdullahi Abukar Ahmed. He mentors under the name Tripple A and teaches the Law and Order framework inside a 3-month programme."],
-  ["q2", "Who compiled Law and Order?", "Abdiwali Moalimuu compiled the strategy and is credited here as Grand Mentor. The public pages are an overview. The rule set is taught in the mentorship."],
-  ["q3", "Can a complete beginner join?", "Yes. Month 1 starts with terminology, platforms, candles, and risk basics. Intermediate students can still use the same three-month path."],
-  ["q4", "Is this financial advice or a signal service?", "No. The mentorship is education. It does not promise profits, and market posts on this site are not buy or sell calls."],
-  ["q5", "When can I start?", "The next cohort opens on 11 January 2027. You choose online or in person when you register, and class times are sent to enrolled students."]
-];
-
 export function Home() {
-  const [slide, setSlide] = useState(0);
   const [meet, setMeet] = useState(false);
 
   useEffect(() => {
@@ -109,27 +94,6 @@ export function Home() {
           </div>
         </div>
       </section>
-      <section className="section" aria-labelledby="stories-title">
-        <div className="container">
-          <header className="section__head section__head--center">
-            <p className="eyebrow">The standard</p>
-            <h2 id="stories-title">What the three months are for</h2>
-            <p className="lede">Growth and confidence, earned by keeping a rule. These are the standards of the mentorship, not profit claims.</p>
-          </header>
-          <div className="slider card" aria-roledescription="carousel" aria-label="Mentorship standards">
-            <div className="slider__viewport">
-              <article className="slide">
-                <p>{SLIDES[slide][0]}</p>
-                <footer><strong>{SLIDES[slide][1]}</strong><span>{SLIDES[slide][2]}</span></footer>
-              </article>
-            </div>
-            <div className="slider__controls">
-              <button className="icon-btn" type="button" aria-label="Previous" onClick={() => setSlide((index) => (index + SLIDES.length - 1) % SLIDES.length)}><Icon name="i-chevron" /></button>
-              <button className="icon-btn" type="button" aria-label="Next" onClick={() => setSlide((index) => (index + 1) % SLIDES.length)}><Icon name="i-arrow" /></button>
-            </div>
-          </div>
-        </div>
-      </section>
       <section className="section" aria-labelledby="news-title">
         <div className="container">
           <header className="section__head">
@@ -155,7 +119,7 @@ export function Home() {
             <p className="eyebrow">Questions</p>
             <h2 id="faq-title">Before you register</h2>
           </header>
-          <Accordion items={FAQ.map(([id, title, body]) => ({ id, title, body }))} />
+          <FaqList />
         </div>
       </section>
       <section className="section">

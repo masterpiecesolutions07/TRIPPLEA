@@ -62,3 +62,11 @@ export const settingsSchema = z.object({
   instagram: z.string().trim().max(300).optional(),
   strategyCredit: z.string().trim().min(8).max(240).optional()
 });
+
+export const faqsSchema = z.object({
+  items: z.array(z.object({
+    id: z.string().trim().min(1).max(40),
+    question: z.string().trim().min(4).max(200),
+    answer: z.string().trim().min(8).max(2000)
+  })).max(40)
+});

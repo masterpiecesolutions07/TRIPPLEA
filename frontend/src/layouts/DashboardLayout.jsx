@@ -10,6 +10,7 @@ import {
   HomeIcon,
   MegaphoneIcon,
   PencilSquareIcon,
+  QuestionMarkCircleIcon,
   RectangleStackIcon,
   ShieldCheckIcon,
   UserGroupIcon,
@@ -47,6 +48,7 @@ const ADMIN = [
   ["/admin/users", "Users", UsersIcon],
   ["/admin/mentors", "Mentors", UserPlusIcon],
   ["/admin/settings", "Settings", Cog6ToothIcon],
+  ["/admin/faqs", "Questions", QuestionMarkCircleIcon],
   ["/admin/audit", "Audit log", RectangleStackIcon],
   ["/admin/analytics", "Analytics", ChartBarIcon],
   ...MENTOR.filter(([path]) => path !== "/mentor" && path !== "/mentor/profile")

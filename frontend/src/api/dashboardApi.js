@@ -74,3 +74,13 @@ export async function saveSettings(payload) {
   const { data } = await api.patch("/admin/settings", payload);
   return data.item;
 }
+
+export async function getFaqs() {
+  const { data } = await api.get("/admin/faqs");
+  return data.items;
+}
+
+export async function saveFaqs(items) {
+  const { data } = await api.put("/admin/faqs", { items });
+  return data.items;
+}

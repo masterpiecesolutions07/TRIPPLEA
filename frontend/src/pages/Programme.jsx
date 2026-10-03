@@ -1,17 +1,9 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import programme from "../data/programme.json";
-import { Accordion } from "../components/Accordion.jsx";
+import { FaqList } from "../components/FaqList.jsx";
 import { Countdown } from "../components/Countdown.jsx";
 import { Icon } from "../components/Icon.jsx";
-
-const FAQ = [
-  ["p1", "How are live sessions delivered?", "Online live sessions run on Zoom and Google Meet. In-person sessions use the cohort room. The venue is sent after you register. You choose a preferred mode at registration."],
-  ["p2", "Does the price change between online and physical?", "Online and in-person students follow the same curriculum. If you need a different mix, or a fee away from the starter price, use the custom price request and describe it."],
-  ["p3", "What is included from 120 USD?", "The starter plan is the 3-month curriculum, recordings, Discord, and a weekly group review. Premium adds a closer review rhythm, quoted when you register."],
-  ["p4", "Are payments taken on this website?", "No. Registration reserves your interest. Fees are arranged with Tripple A directly. The site does not take M-Pesa or card payments."],
-  ["p5", "What should I have ready?", "A weekly study block, a notebook or journal, and access to a charting platform. You do not need a profit target."]
-];
 
 export function Programme() {
   useEffect(() => { document.title = "Programme · Tripple A"; }, []);
@@ -107,7 +99,7 @@ export function Programme() {
         <div className="container" style={{ maxWidth: "52rem" }}>
           <h2>Programme questions</h2>
           <div style={{ marginTop: "1rem" }}>
-            <Accordion items={FAQ.map(([id, title, body]) => ({ id, title, body }))} />
+            <FaqList />
           </div>
         </div>
       </section>

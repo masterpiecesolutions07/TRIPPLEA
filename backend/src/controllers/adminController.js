@@ -5,6 +5,7 @@ import { Cohort } from "../models/Cohort.js";
 import { Settings } from "../models/Settings.js";
 import { Trade } from "../models/Trade.js";
 import { User } from "../models/User.js";
+import { DEFAULT_FAQS } from "../data/defaultFaqs.js";
 import { ApiError } from "../utils/ApiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
@@ -103,4 +104,29 @@ export const updateSettings = asyncHandler(async (req, res) => {
   );
   await AuditLog.create({ actor: req.user._id, action: "settings.update", entity: "Settings", entityId: String(item._id) });
   res.json({ item });
+});
+
+export function publishedFaqs(settings) {
+  if (settings?.faqsManaged) return settings.faqs || [];
+  return DEFAULT_FAQS;
+}
+
+export const getFaqs = asyncHandler(async (_req, res) => {
+  const settings = await Settings.findOne({ singleton: "site" }).select("faqs faqsManaged");
+  res.json({ items: publishedFaqs(settings) });
+});
+
+export const updateFaqs = asyncHandler(async (req, res) => {
+  const faqs = req.body.items.map((item) => ({
+    id: item.id,
+    question: item.question.trim(),
+    answer: item.answer.trim()
+  }));
+  const item = await Settings.findOneAndUpdate(
+    { singleton: "site" },
+    { $set: { faqs, faqsManaged: true }, $setOnInsert: { singleton: "site" } },
+    { new: true, upsert: true }
+  );
+  await AuditLog.create({ actor: req.user._id, action: "faqs.update", entity: "Settings", entityId: String(item._id) });
+  res.json({ items: item.faqs });
 });

@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { applyForMentorship } from "../controllers/studentController.js";
+import { publishedFaqs } from "../controllers/adminController.js";
 import { Certificate } from "../models/Certificate.js";
+import { Settings } from "../models/Settings.js";
 import { Cohort } from "../models/Cohort.js";
 import { authLimiter } from "../middleware/rateLimiter.js";
 import { validate } from "../middleware/validateMiddleware.js";
@@ -24,6 +26,11 @@ router.get("/certificates", asyncHandler(async (_req, res) => {
     .limit(24)
     .lean();
   res.json({ items });
+}));
+
+router.get("/faqs", asyncHandler(async (_req, res) => {
+  const settings = await Settings.findOne({ singleton: "site" }).select("faqs faqsManaged");
+  res.json({ items: publishedFaqs(settings) });
 }));
 
 router.post("/applications", authLimiter, validate(mentorshipApplicationSchema), applyForMentorship);

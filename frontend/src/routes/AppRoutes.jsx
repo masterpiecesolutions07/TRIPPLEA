@@ -14,6 +14,7 @@ import { Terms } from "../pages/Terms.jsx";
 import { Updates } from "../pages/Updates.jsx";
 import { Login } from "../pages/auth/Login.jsx";
 import { Register } from "../pages/auth/Register.jsx";
+import { FaqsPage } from "../pages/dashboard/Faqs.jsx";
 import { Analytics, AuditLog, SettingsPage } from "../pages/dashboard/AdminPages.jsx";
 import { Applications } from "../pages/dashboard/Applications.jsx";
 import { ChangePassword } from "../pages/dashboard/ChangePassword.jsx";
@@ -81,6 +82,7 @@ export function AppRoutes() {
       <Route path="/admin/users" element={<Desk allow={["admin"]}><Users /></Desk>} />
       <Route path="/admin/mentors" element={<Desk allow={["admin"]}><Mentors /></Desk>} />
       <Route path="/admin/settings" element={<Desk allow={["admin"]}><SettingsPage /></Desk>} />
+      <Route path="/admin/faqs" element={<Desk allow={["admin"]}><FaqsPage /></Desk>} />
       <Route path="/admin/audit" element={<Desk allow={["admin"]}><AuditLog /></Desk>} />
       <Route path="/admin/analytics" element={<Desk allow={["admin"]}><Analytics /></Desk>} />
     </Routes>

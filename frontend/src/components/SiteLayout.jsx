@@ -19,6 +19,7 @@ const LINKS = [
   ["/about", "About"],
   ["/strategy", "Strategy"],
   ["/programme", "Programme"],
+  ["/#achievements", "Achievements"],
   ["/updates", "Updates"],
   ["/contact", "Contact"]
 ];
@@ -31,6 +32,12 @@ const SOCIALS = [
   ["discord", "Discord", "i-discord", "/contact#socials"],
   ["instagram", "Instagram", "i-instagram", "/contact#socials"]
 ];
+
+function formatUpdateDate(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+}
 
 function SocialRow() {
   return (
@@ -60,8 +67,10 @@ export function SiteLayout({ children }) {
   useEffect(() => {
     setMenuOpen(false);
     setNotifyOpen(false);
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    const target = location.hash ? document.getElementById(location.hash.slice(1)) : null;
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    else window.scrollTo(0, 0);
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
     document.body.classList.toggle("nav-open", menuOpen);
@@ -115,9 +124,13 @@ export function SiteLayout({ children }) {
             <ul className="nav__links">
               {LINKS.map(([to, label]) => (
                 <li key={to}>
-                  <NavLink className={({ isActive }) => `nav__link${isActive ? " is-active" : ""}`} to={to} end={to === "/"}>
-                    {label}
-                  </NavLink>
+                  {to.startsWith("/#") ? (
+                    <Link className={`nav__link${location.pathname === "/" && location.hash === to.slice(1) ? " is-active" : ""}`} to={to}>{label}</Link>
+                  ) : (
+                    <NavLink className={({ isActive }) => `nav__link${isActive ? " is-active" : ""}`} to={to} end={to === "/"}>
+                      {label}
+                    </NavLink>
+                  )}
                 </li>
               ))}
             </ul>
@@ -139,7 +152,13 @@ export function SiteLayout({ children }) {
                   </div>
                   <ul className="notify__list">
                     {updates.slice(0, 4).map((item) => (
-                      <li key={item.id}><Link to="/updates">{item.title}</Link></li>
+                      <li key={item.id}>
+                        <Link className="notify__item" to="/updates">
+                          <span className="tag">{item.category}</span>
+                          <strong>{item.title}</strong>
+                          <time dateTime={item.date}>{formatUpdateDate(item.date)}</time>
+                        </Link>
+                      </li>
                     ))}
                   </ul>
                 </div>
