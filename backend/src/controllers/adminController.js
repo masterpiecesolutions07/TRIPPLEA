@@ -16,9 +16,9 @@ export const listUsers = asyncHandler(async (_req, res) => {
 
 export const updateRole = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
-  if (!user) throw new ApiError(404, "User not found.");
+  if (!user) throw new ApiError(404, "That account is no longer here.");
   if (String(user._id) === String(req.user._id) && req.body.role !== "admin") {
-    throw new ApiError(400, "You cannot remove your own admin role.");
+    throw new ApiError(400, "You cannot change your own access.");
   }
   const previous = user.role;
   user.role = req.body.role;

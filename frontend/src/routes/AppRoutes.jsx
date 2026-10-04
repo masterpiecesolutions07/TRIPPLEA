@@ -14,14 +14,20 @@ import { Terms } from "../pages/Terms.jsx";
 import { Updates } from "../pages/Updates.jsx";
 import { Login } from "../pages/auth/Login.jsx";
 import { Register } from "../pages/auth/Register.jsx";
+import { EnrollmentDetail } from "../pages/dashboard/EnrollmentDetail.jsx";
+import { Enrollments } from "../pages/dashboard/Enrollments.jsx";
 import { FaqsPage } from "../pages/dashboard/Faqs.jsx";
+import { ManageCourse } from "../pages/dashboard/ManageCourse.jsx";
 import { Analytics, AuditLog, SettingsPage } from "../pages/dashboard/AdminPages.jsx";
+import { Accounts } from "../pages/dashboard/Accounts.jsx";
 import { Applications } from "../pages/dashboard/Applications.jsx";
 import { ChangePassword } from "../pages/dashboard/ChangePassword.jsx";
 import { Cohorts } from "../pages/dashboard/Cohorts.jsx";
+import { Sessions } from "../pages/dashboard/Sessions.jsx";
 import { Overview } from "../pages/dashboard/Overview.jsx";
 import { RecordList } from "../pages/dashboard/RecordList.jsx";
-import { Profile, StudentHome, StudentNotifications, StudentProgress, StudentSessions, SubmitStory } from "../pages/dashboard/StudentPages.jsx";
+import { Students } from "../pages/dashboard/Students.jsx";
+import { Profile, StudentCourse, StudentDay, StudentHome, StudentLesson, StudentNotifications, StudentProgress, StudentSessions, SubmitStory } from "../pages/dashboard/StudentPages.jsx";
 import { Mentors, Users } from "../pages/dashboard/Users.jsx";
 import { homePath } from "../utils/homePath.js";
 import { ProtectedRoute } from "./ProtectedRoute.jsx";
@@ -62,20 +68,27 @@ export function AppRoutes() {
       </Route>
       <Route path="/change-password" element={<Desk><ChangePassword /></Desk>} />
       <Route path="/student" element={<Desk><StudentHome /></Desk>} />
+      <Route path="/student/course" element={<Desk><StudentCourse /></Desk>} />
+      <Route path="/student/course/watch/:moduleId" element={<Desk><StudentDay /></Desk>} />
+      <Route path="/student/lessons/:id" element={<Desk><StudentLesson /></Desk>} />
       <Route path="/student/progress" element={<Desk><StudentProgress /></Desk>} />
       <Route path="/student/sessions" element={<Desk><StudentSessions /></Desk>} />
       <Route path="/student/notifications" element={<Desk><StudentNotifications /></Desk>} />
       <Route path="/student/story" element={<Desk><SubmitStory /></Desk>} />
       <Route path="/student/profile" element={<Desk><Profile /></Desk>} />
       <Route path="/mentor" element={<Desk allow={["mentor", "admin"]}><Overview title="Mentor overview" /></Desk>} />
+      <Route path="/mentor/course" element={<Desk allow={["mentor", "admin"]}><ManageCourse /></Desk>} />
+      <Route path="/mentor/enrollments" element={<Desk allow={["mentor", "admin"]}><Enrollments /></Desk>} />
+      <Route path="/mentor/enrollments/:id" element={<Desk allow={["mentor", "admin"]}><EnrollmentDetail /></Desk>} />
       <Route path="/mentor/applications" element={<Desk allow={["mentor", "admin"]}><Applications /></Desk>} />
+      <Route path="/mentor/users" element={<Desk allow={["mentor", "admin"]}><Accounts /></Desk>} />
       <Route path="/mentor/cohorts" element={<Desk allow={["mentor", "admin"]}><Cohorts /></Desk>} />
-      <Route path="/mentor/students" element={<Desk allow={["mentor", "admin"]}><RecordList title="Students" resource="students" empty="No student accounts yet." /></Desk>} />
+      <Route path="/mentor/sessions" element={<Desk allow={["mentor", "admin"]}><Sessions /></Desk>} />
+      <Route path="/mentor/students" element={<Desk allow={["mentor", "admin"]}><Students /></Desk>} />
       <Route path="/mentor/certificates" element={<Desk allow={["mentor", "admin"]}><RecordList title="Certificates" resource="certificates" empty="No certificates uploaded yet." /></Desk>} />
       <Route path="/mentor/trades" element={<Desk allow={["mentor", "admin"]}><RecordList title="Trades" resource="trades" empty="No trades posted yet." /></Desk>} />
       <Route path="/mentor/alerts" element={<Desk allow={["mentor", "admin"]}><RecordList title="Alerts" resource="alerts" empty="No alerts yet." /></Desk>} />
-      <Route path="/mentor/stories" element={<Desk allow={["mentor", "admin"]}><RecordList title="Stories" resource="posts" empty="No stories yet." /></Desk>} />
-      <Route path="/mentor/testimonials" element={<Desk allow={["mentor", "admin"]}><RecordList title="Testimonials" resource="testimonials" empty="No testimonials yet." /></Desk>} />
+      <Route path="/mentor/stories" element={<Desk allow={["mentor", "admin"]}><RecordList title="Success stories" resource="posts" empty="No success stories yet." /></Desk>} />
       <Route path="/mentor/messages" element={<Desk allow={["mentor", "admin"]}><RecordList title="Messages" resource="messages" empty="No messages yet." /></Desk>} />
       <Route path="/mentor/profile" element={<Desk allow={["mentor", "admin"]}><Profile /></Desk>} />
       <Route path="/admin" element={<Desk allow={["admin"]}><Overview title="Admin overview" /></Desk>} />

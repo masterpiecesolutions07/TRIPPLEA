@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { createMentor, getUsers, setUserRole } from "../../api/dashboardApi.js";
+import { SaveAlert } from "../../components/SaveAlert.jsx";
+import { feedbackMessage } from "../../utils/feedback.js";
 
 const ROLES = ["student", "mentor", "admin"];
 
 export function Users() {
   const [items, setItems] = useState([]);
   const [error, setError] = useState("");
+  const [saved, setSaved] = useState("");
 
   function load() {
-    getUsers().then(setItems).catch((err) => setError(err.response?.data?.message || "Could not load users."));
+    getUsers().then(setItems).catch((err) => setError(feedbackMessage(err, "Could not load the accounts. Please try again.")));
   }
 
   useEffect(() => { load(); }, []);
@@ -17,7 +20,8 @@ export function Users() {
     <>
       <h1>Users and roles</h1>
       {error ? <p className="form-summary">{error}</p> : null}
-      {items.length === 0 ? <p className="note">No accounts yet. Seed the admin, or wait for a student to register.</p> : (
+      <SaveAlert message={saved} />
+      {items.length === 0 ? <p className="note">No accounts yet.</p> : (
         <div className="table-wrap panel">
           <table className="dash-table">
             <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
@@ -27,7 +31,11 @@ export function Users() {
                   <td>{item.name}</td>
                   <td>{item.email}</td>
                   <td>
-                    <select value={item.role} aria-label={`Role for ${item.email}`} onChange={(event) => setUserRole(item.id, event.target.value).then(load)}>
+                    <select value={item.role} aria-label={`Role for ${item.email}`} onChange={(event) => {
+                      const role = event.target.value;
+                      setError("");
+                      setUserRole(item.id, role).then(() => { setSaved("Access saved."); load(); }).catch((err) => setError(feedbackMessage(err, "Could not change that access. Please try again.")));
+                    }}>
                       {ROLES.map((role) => <option key={role}>{role}</option>)}
                     </select>
                   </td>
@@ -60,7 +68,7 @@ export function Mentors() {
       setMessage(`${item.name} can sign in and will be asked to change the password.`);
       setForm({ name: "", email: "", password: "" });
     } catch (err) {
-      setError(err.response?.data?.message || "Could not create the mentor.");
+      setError(feedbackMessage(err, "Could not create the mentor account. Please try again."));
     }
   }
 
@@ -69,7 +77,7 @@ export function Mentors() {
       <h1>Mentor accounts</h1>
       <form className="panel dash-form" onSubmit={submit}>
         {error ? <p className="form-summary">{error}</p> : null}
-        {message ? <p className="note">{message}</p> : null}
+        <SaveAlert message={message} />
         <div className="field"><label htmlFor="mentor-name">Name</label><input id="mentor-name" name="name" required value={form.name} onChange={update} /></div>
         <div className="field"><label htmlFor="mentor-email">Email</label><input id="mentor-email" name="email" type="email" required value={form.email} onChange={update} /></div>
         <div className="field"><label htmlFor="mentor-password">Temporary password</label><input id="mentor-password" name="password" type="password" required value={form.password} onChange={update} /></div>

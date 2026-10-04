@@ -1,3 +1,5 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
@@ -9,12 +11,14 @@ import { sanitizeBody } from "./middleware/sanitizeMiddleware.js";
 import routes from "./routes/index.js";
 
 const app = express();
+const uploads = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../uploads");
 
 app.set("trust proxy", 1);
 app.use(helmet());
 app.use(cors({ origin: env.frontendUrl, credentials: true }));
 app.use(morgan(env.nodeEnv === "test" ? "tiny" : "dev"));
-app.use(express.json({ limit: "1mb" }));
+app.use("/uploads", express.static(uploads));
+app.use(express.json({ limit: "4mb" }));
 app.use(cookieParser());
 app.use(sanitizeBody);
 app.use("/api/v1", routes);

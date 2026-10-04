@@ -34,4 +34,4 @@ Forgot and reset password, email verification, public settings and galleries, wa
 
 ## Environment
 
-`backend/.env.example` lists `PORT`, `NODE_ENV`, `MONGO_URI`, JWT secrets and lifetimes, `FRONTEND_URL`, admin seed values, optional mentor seed values, and `SEED_SAMPLE`. Cloudinary and email variables are added when those services are connected. Never commit `.env`.
+`backend/.env.example` lists `PORT`, `NODE_ENV`, `MONGO_URI`, JWT secrets and lifetimes, `FRONTEND_URL`, admin seed values, and optional mentor seed values. Cloudinary and email variables are added when those services are connected. Never commit `.env`.

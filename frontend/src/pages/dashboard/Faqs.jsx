@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { getFaqs, saveFaqs } from "../../api/dashboardApi.js";
+import { SaveAlert } from "../../components/SaveAlert.jsx";
+import { feedbackMessage } from "../../utils/feedback.js";
 
 function blankFaq() {
   return { id: `faq-${Date.now().toString(36)}`, question: "", answer: "" };
@@ -12,7 +14,7 @@ export function FaqsPage() {
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    getFaqs().then(setItems).catch((err) => setError(err.response?.data?.message || "Could not load the questions."));
+    getFaqs().then(setItems).catch((err) => setError(feedbackMessage(err, "Could not load the questions. Please try again.")));
   }, []);
 
   function change(id, field, value) {
@@ -41,7 +43,7 @@ export function FaqsPage() {
       setItems(await saveFaqs(payload));
       setSaved("Questions saved. They are live on the site.");
     } catch (err) {
-      setError(err.response?.data?.message || "Could not save the questions.");
+      setError(feedbackMessage(err, "Could not save the questions. Please try again."));
     } finally {
       setBusy(false);
     }
@@ -55,7 +57,7 @@ export function FaqsPage() {
       <p className="note">These appear on the landing page and the programme page. Add one, edit the wording, or remove one, then save.</p>
       <form className="dash-form" onSubmit={submit}>
         {error ? <p className="form-summary">{error}</p> : null}
-        {saved ? <p className="note">{saved}</p> : null}
+        <SaveAlert message={saved} />
         {items.length === 0 ? <p className="note">No questions. Add one, or save an empty list to clear the public page.</p> : null}
         {items.map((item, index) => (
           <fieldset className="panel" key={item.id} style={{ display: "grid", gap: "0.7rem", marginBottom: "0.8rem" }}>

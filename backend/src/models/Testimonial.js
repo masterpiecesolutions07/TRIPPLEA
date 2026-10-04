@@ -4,7 +4,12 @@ const testimonialSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     role: { type: String, default: "" },
+    relationship: { type: String, default: "" },
+    cohortLabel: { type: String, default: "" },
+    country: { type: String, default: "" },
+    topic: { type: String, default: "" },
     text: { type: String, required: true },
+    consent: { type: Boolean, default: false },
     rating: { type: Number, min: 1, max: 5, default: 5 },
     avatar: { url: { type: String, default: "" }, publicId: { type: String, default: "" } },
     published: { type: Boolean, default: false }

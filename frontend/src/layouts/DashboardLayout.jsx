@@ -1,13 +1,17 @@
+import { useEffect, useState } from "react";
 import { Link, NavLink, Navigate, useLocation } from "react-router-dom";
 import {
+  AcademicCapIcon,
+  Bars3Icon,
   BellIcon,
   BookOpenIcon,
   CalendarDaysIcon,
+  VideoCameraIcon,
   ChartBarIcon,
-  ChatBubbleLeftRightIcon,
   ClipboardDocumentListIcon,
   Cog6ToothIcon,
   HomeIcon,
+  LockOpenIcon,
   MegaphoneIcon,
   PencilSquareIcon,
   QuestionMarkCircleIcon,
@@ -15,30 +19,35 @@ import {
   ShieldCheckIcon,
   UserGroupIcon,
   UserPlusIcon,
-  UsersIcon
+  UsersIcon,
+  XMarkIcon
 } from "@heroicons/react/24/outline";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useTheme } from "../context/ThemeContext.jsx";
 
 const STUDENT = [
   ["/student", "Home", HomeIcon],
+  ["/student/course", "Course", AcademicCapIcon],
   ["/student/progress", "Progress", ChartBarIcon],
   ["/student/sessions", "Sessions", CalendarDaysIcon],
   ["/student/notifications", "Notifications", BellIcon],
-  ["/student/story", "My story", PencilSquareIcon],
+  ["/student/story", "Success stories", PencilSquareIcon],
   ["/student/profile", "Profile", UsersIcon]
 ];
 
 const MENTOR = [
   ["/mentor", "Overview", HomeIcon],
+  ["/mentor/course", "Course", AcademicCapIcon],
+  ["/mentor/enrollments", "Enrollments", LockOpenIcon],
   ["/mentor/applications", "Applications", ClipboardDocumentListIcon],
+  ["/mentor/users", "Accounts", UsersIcon],
   ["/mentor/cohorts", "Cohorts", CalendarDaysIcon],
+  ["/mentor/sessions", "Sessions", VideoCameraIcon],
   ["/mentor/students", "Students", UserGroupIcon],
   ["/mentor/certificates", "Certificates", ShieldCheckIcon],
   ["/mentor/trades", "Trades", ChartBarIcon],
   ["/mentor/alerts", "Alerts", MegaphoneIcon],
-  ["/mentor/stories", "Stories", BookOpenIcon],
-  ["/mentor/testimonials", "Testimonials", ChatBubbleLeftRightIcon],
+  ["/mentor/stories", "Success stories", BookOpenIcon],
   ["/mentor/messages", "Messages", BellIcon],
   ["/mentor/profile", "Profile", UsersIcon]
 ];
@@ -51,7 +60,8 @@ const ADMIN = [
   ["/admin/faqs", "Questions", QuestionMarkCircleIcon],
   ["/admin/audit", "Audit log", RectangleStackIcon],
   ["/admin/analytics", "Analytics", ChartBarIcon],
-  ...MENTOR.filter(([path]) => path !== "/mentor" && path !== "/mentor/profile")
+  ...MENTOR.filter(([path]) => path !== "/mentor" && path !== "/mentor/profile"),
+  ["/mentor/profile", "Profile", UsersIcon]
 ];
 
 function linksFor(pathname, role) {
@@ -64,14 +74,17 @@ export function DashboardLayout({ children }) {
   const { user, logout } = useAuth();
   const { theme, toggle } = useTheme();
   const location = useLocation();
+  const [menu, setMenu] = useState(false);
+  useEffect(() => { setMenu(false); }, [location.pathname]);
   if (user?.mustChangePassword && location.pathname !== "/change-password") {
     return <Navigate to="/change-password" replace />;
   }
   const links = linksFor(location.pathname, user?.role);
 
   return (
-    <div className="dash">
-      <aside className="dash__side">
+    <div className={`dash${menu ? " is-menu-open" : ""}`}>
+      {menu ? <button className="dash__backdrop" type="button" aria-label="Close menu" onClick={() => setMenu(false)} /> : null}
+      <aside className={`dash__side${menu ? " is-open" : ""}`}>
         <a className="dash__brand" href="/">
           <img src="/assets/images/logo-mark.png" alt="" />
           <div>
@@ -79,9 +92,9 @@ export function DashboardLayout({ children }) {
             <span>{user?.role}</span>
           </div>
         </a>
-        <nav className="dash__nav" aria-label="Dashboard">
+        <nav className="dash__nav" id="dash-nav" aria-label="Dashboard">
           {links.map(([to, label, Icon]) => (
-            <NavLink key={to} to={to} end className={({ isActive }) => `dash__link${isActive ? " is-active" : ""}`}>
+            <NavLink key={to} to={to} end={to !== "/mentor/enrollments" && to !== "/student/course"} className={({ isActive }) => `dash__link${isActive ? " is-active" : ""}`}>
               <Icon className="dash-icon" />
               {label}
             </NavLink>
@@ -90,7 +103,12 @@ export function DashboardLayout({ children }) {
       </aside>
       <section className="dash__main">
         <header className="dash__top">
-          <div>
+          <div className="dash__who-row">
+            <button className="dash__menu" type="button" aria-expanded={menu} aria-controls="dash-nav" onClick={() => setMenu((open) => !open)}>
+              {menu ? <XMarkIcon /> : <Bars3Icon />}
+              <span>{menu ? "Close" : "Menu"}</span>
+            </button>
+            {user?.avatar?.url ? <img className="dash__avatar" src={user.avatar.url} alt="" /> : null}
             <p className="dash__who">{user?.name}</p>
           </div>
           <div className="dash__actions">

@@ -12,7 +12,7 @@ The strategy taught in class is Law and Order, compiled by Grand Mentor Abdiwali
 - A cohort lasts 3 months. The end date is the start date plus 3 months.
 - January 2027 is one sample cohort, not a permanent rule.
 - Confirmed social link: TikTok https://www.tiktok.com/@tripple.a75. WhatsApp, Facebook, YouTube, Discord, and Instagram stay unpublished until a real URL exists.
-- Home stats stay programme facts (3 months, 12 weeks, 2 ways to attend, from 120 USD) until real settings replace them. They are not win rates.
+- Home stats stay programme facts (3 months, 13 weeks, 2 ways to attend, from 120 USD) until real settings replace them. They are not win rates. A year is 52 weeks, so three months is 13 weeks.
 
 ## What the platform is for
 

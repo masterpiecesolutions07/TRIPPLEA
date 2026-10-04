@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
+import { feedbackMessage } from "../../utils/feedback.js";
 import { homePath } from "../../utils/homePath.js";
 
 export function ChangePassword() {
@@ -21,7 +22,7 @@ export function ChangePassword() {
       const next = await changePassword(form);
       navigate(homePath({ ...next, mustChangePassword: false }), { replace: true });
     } catch (err) {
-      setError(err.response?.data?.message || "Could not change the password.");
+      setError(feedbackMessage(err, "Could not change the password. Please try again."));
     }
   }
 

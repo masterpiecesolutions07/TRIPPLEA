@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api/axiosInstance.js";
 import { Icon } from "../components/Icon.jsx";
+import { feedbackMessage } from "../utils/feedback.js";
 
 const EMPTY = { name: "", email: "", phone: "", subject: "", message: "" };
 
@@ -25,7 +26,7 @@ export function Contact() {
       setSent(form.name);
       setForm(EMPTY);
     } catch (err) {
-      setError(err.response?.data?.message || "The API is not reachable. Start MongoDB, then the backend, and try again.");
+      setError(feedbackMessage(err, "We could not send your message just now. Please try again."));
     }
   }
 

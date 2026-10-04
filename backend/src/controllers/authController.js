@@ -3,6 +3,8 @@ import { Application } from "../models/Application.js";
 import { User } from "../models/User.js";
 import { ApiError } from "../utils/ApiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import { saveImage } from "../utils/saveImage.js";
+import { openApprovedEnrollments } from "../services/enrollmentService.js";
 import {
   REFRESH_COOKIE,
   hashToken,
@@ -41,6 +43,7 @@ export const register = asyncHandler(async (req, res) => {
     role: "student"
   });
   await Application.updateMany({ email, user: null }, { $set: { user: user._id } });
+  await openApprovedEnrollments(user);
   const withSecrets = await User.findById(user._id).select("+refreshTokens");
   await storeRefresh(withSecrets, true, res);
   res.status(201).json(publicAuth(withSecrets, signAccessToken(withSecrets)));
@@ -109,6 +112,13 @@ export const logout = asyncHandler(async (req, res) => {
 });
 
 export const me = asyncHandler(async (req, res) => {
+  res.json({ user: req.user.toPublic() });
+});
+
+export const updateAvatar = asyncHandler(async (req, res) => {
+  const url = await saveImage(req.body.image, "avatars");
+  req.user.avatar = { url, publicId: "" };
+  await req.user.save();
   res.json({ user: req.user.toPublic() });
 });
 

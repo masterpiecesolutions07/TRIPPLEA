@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { getAudit, getAnalytics, getSettings, saveSettings } from "../../api/dashboardApi.js";
+import { SaveAlert } from "../../components/SaveAlert.jsx";
+import { feedbackMessage } from "../../utils/feedback.js";
 
 export function AuditLog() {
   const [items, setItems] = useState([]);
   const [error, setError] = useState("");
   useEffect(() => {
-    getAudit().then(setItems).catch((err) => setError(err.response?.data?.message || "Could not load the audit log."));
+    getAudit().then(setItems).catch((err) => setError(feedbackMessage(err, "Could not load the activity record. Please try again.")));
   }, []);
   return (
     <>
@@ -36,7 +38,7 @@ export function Analytics() {
   const [data, setData] = useState(null);
   const [error, setError] = useState("");
   useEffect(() => {
-    getAnalytics().then(setData).catch((err) => setError(err.response?.data?.message || "Could not load analytics."));
+    getAnalytics().then(setData).catch((err) => setError(feedbackMessage(err, "Could not load the summary. Please try again.")));
   }, []);
   const tiles = data ? [
     ["Users", data.users],
@@ -79,7 +81,7 @@ export function SettingsPage() {
         instagram: item?.socials?.instagram || "",
         strategyCredit: item?.strategyCredit || "Strategy compiled by Grand Mentor Abdiwali Moalimuu."
       });
-    }).catch((err) => setError(err.response?.data?.message || "Could not load settings."));
+    }).catch((err) => setError(feedbackMessage(err, "Could not load the settings. Please try again.")));
   }, []);
 
   function update(event) {
@@ -94,7 +96,7 @@ export function SettingsPage() {
       await saveSettings(form);
       setSaved("Settings saved.");
     } catch (err) {
-      setError(err.response?.data?.message || "Could not save settings.");
+      setError(feedbackMessage(err, "Could not save the settings. Please try again."));
     }
   }
 
@@ -104,7 +106,7 @@ export function SettingsPage() {
       <h1>Site settings</h1>
       <form className="panel dash-form" onSubmit={submit}>
         {error ? <p className="form-summary">{error}</p> : null}
-        {saved ? <p className="note">{saved}</p> : null}
+        <SaveAlert message={saved} />
         {["email", "phoneDisplay", "whatsappNumber", "location", "tiktok", "facebook", "youtube", "discord", "instagram", "strategyCredit"].map((name) => (
           <div className="field" key={name}>
             <label htmlFor={name}>{name}</label>

@@ -309,6 +309,17 @@ html.is-ready .preloader {
   box-shadow: var(--shadow-lg);
 }
 
+@media (max-width: 1023px) {
+  .notify__panel {
+    position: fixed;
+    top: calc(var(--header-h) + 0.45rem);
+    left: 50%;
+    right: auto;
+    width: min(22rem, calc(100vw - 1.5rem));
+    transform: translateX(-50%);
+  }
+}
+
 .notify__head {
   display: flex;
   align-items: baseline;
@@ -784,6 +795,7 @@ html.is-ready .preloader {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   background: var(--input-bg);
+  color: var(--text);
 }
 
 .field textarea {

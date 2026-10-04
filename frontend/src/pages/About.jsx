@@ -18,7 +18,7 @@ export function About() {
           <div className="prose">
             <h2>The mentor</h2>
             <p>Abdullahi Abukar Ahmed is Tripple A. He teaches people who are new to forex, and people who already trade but want a routine they can repeat. The work is education: a rule, a risk limit, and a journal.</p>
-            <p>Growth &amp; Confidence is the line under his name. Growth is the skill you build over twelve weeks. Confidence is what is left when you can explain the rule before you act, and stand aside when it is not there.</p>
+            <p>Growth &amp; Confidence is the line under his name. Growth is the skill you build over thirteen weeks. Confidence is what is left when you can explain the rule before you act, and stand aside when it is not there.</p>
             <p>The strategy he teaches was compiled by Grand Mentor Abdiwali Moalimuu. Tripple A carries that framework into the mentorship: Law for the rules, Order for the discipline and the risk management. The full playbook is taught in class.</p>
             <p>Students join him online on Zoom and Google Meet, or in person with the cohort. Recordings, a Discord community, and a weekly review support both rooms. You can also find him on TikTok as <a href="https://www.tiktok.com/@tripple.a75" target="_blank" rel="noopener noreferrer">@tripple.a75</a>.</p>
           </div>

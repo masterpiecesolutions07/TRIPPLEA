@@ -28,6 +28,14 @@ export function Updates() {
       </section>
       <section className="section">
         <div className="container stack">
+          <div className="panel">
+            <h2>Check the calendar before you practise</h2>
+            <p>Before a session, see which releases are due. Jobs figures, inflation, and interest-rate decisions can move a pair, so know the time before you mark a chart. The mentorship uses these two calendars. Open either one and look up the day you are studying.</p>
+            <div className="cluster">
+              <a className="btn btn--ghost" href="https://www.myfxbook.com/forex-economic-calendar" target="_blank" rel="noreferrer">Myfxbook calendar</a>
+              <a className="btn btn--ghost" href="https://www.forexfactory.com/calendar" target="_blank" rel="noreferrer">Forex Factory calendar</a>
+            </div>
+          </div>
           <div className="cluster" style={{ justifyContent: "space-between", alignItems: "center" }}>
             <div className="filters" role="group" aria-label="Filter updates">
               {FILTERS.map((item) => (

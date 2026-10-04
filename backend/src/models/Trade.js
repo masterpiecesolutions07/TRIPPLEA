@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const tradeSchema = new mongoose.Schema(
   {
-    instrument: { type: String, required: true },
-    direction: { type: String, enum: ["buy", "sell"], required: true },
+    instrument: { type: String, default: "" },
+    direction: { type: String, enum: ["buy", "sell"] },
     session: { type: String, default: "" },
     timeframe: { type: String, default: "" },
     entry: { type: String, default: "" },

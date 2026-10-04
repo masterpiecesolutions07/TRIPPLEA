@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { changePassword, fetchMe, loginAccount, logoutAccount, refreshSession, registerAccount } from "../api/authApi.js";
+import { clearDashboardCache } from "../api/dashboardCache.js";
 
 const AuthContext = createContext(null);
 
@@ -18,17 +19,20 @@ export function AuthProvider({ children }) {
     user,
     ready,
     async register(payload) {
+      clearDashboardCache();
       const next = await registerAccount(payload);
       setUser(next);
       return next;
     },
     async login(payload) {
+      clearDashboardCache();
       const next = await loginAccount(payload);
       setUser(next);
       return next;
     },
     async logout() {
       await logoutAccount();
+      clearDashboardCache();
       setUser(null);
     },
     async reload() {

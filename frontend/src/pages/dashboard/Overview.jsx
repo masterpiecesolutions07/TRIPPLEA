@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getOverview } from "../../api/dashboardApi.js";
+import { feedbackMessage } from "../../utils/feedback.js";
 
 const TILES = [
   ["applications", "Applications"],
@@ -14,7 +15,7 @@ export function Overview({ title }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState("");
   useEffect(() => {
-    getOverview().then(setData).catch((err) => setError(err.response?.data?.message || "The API is not reachable."));
+    getOverview().then(setData).catch((err) => setError(feedbackMessage(err, "Could not load this page. Please try again.")));
   }, []);
   return (
     <>

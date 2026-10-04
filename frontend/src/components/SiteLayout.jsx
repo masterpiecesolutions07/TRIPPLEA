@@ -6,6 +6,7 @@ import { useAuth } from "../context/AuthContext.jsx";
 import { homePath } from "../utils/homePath.js";
 import { useTheme } from "../context/ThemeContext.jsx";
 import { Icon } from "./Icon.jsx";
+import { feedbackMessage } from "../utils/feedback.js";
 
 const PAIRS = [
   { symbol: "EUR/USD", price: 1.0864, digits: 4 },
@@ -101,10 +102,10 @@ export function SiteLayout({ children }) {
         subject: "Updates list",
         message: "Please add this address to cohort news."
       });
-      setListNote("You are on the list.");
+      setListNote("You are on the updates list.");
       setEmail("");
-    } catch {
-      setListNote("The API is not reachable. Start MongoDB, then the backend, and try again.");
+    } catch (err) {
+      setListNote(feedbackMessage(err, "We could not add you to the list just now. Please try again."));
     }
   }
 
@@ -135,7 +136,9 @@ export function SiteLayout({ children }) {
               ))}
             </ul>
             <div className="nav__cta">
-              {user ? <Link className="btn btn--ghost" to={homePath(user)}>Account</Link> : <Link className="btn btn--ghost" to="/login">Login</Link>}
+              {user ? <Link className="btn btn--ghost" to={homePath(user)}>Account</Link> : (
+                <Link className="btn btn--ghost" to="/login">Login</Link>
+              )}
               <Link className="btn btn--primary" to="/apply">Apply</Link>
             </div>
           </div>

@@ -54,6 +54,12 @@ textarea {
   color: inherit;
 }
 
+select option,
+select optgroup {
+  background-color: #f8fafc;
+  color: #0b1020;
+}
+
 button {
   cursor: pointer;
 }

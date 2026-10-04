@@ -8,7 +8,7 @@ const password = z
   .regex(/\d/, "Include at least one number.");
 
 export const registerSchema = z.object({
-  name: z.string().trim().min(2, "Enter your full name.").max(80),
+  name: z.string().trim().min(2, "Enter your full name.").max(80, "Use a shorter name."),
   email: z.string().trim().email("Enter a valid email address."),
   password
 });

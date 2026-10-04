@@ -40,7 +40,7 @@ Rules:
 
 Optional:
 
-- `MENTOR_NAME`, `MENTOR_EMAIL`, `MENTOR_PASSWORD` create Tripple A's mentor account when all three are set and that email is free. The same password-change flag is set.
-- `SEED_SAMPLE=true` inserts site settings if missing, and one draft cohort named as sample data. It does not invent certificates, trades, testimonials, or seat counts.
+- `MENTOR_NAME`, `MENTOR_EMAIL`, `MENTOR_PASSWORD` create Tripple A's mentor account when all three are set and that email is free. The seeded mentor signs in with that password and is not forced to change it.
+- The seed does not insert sample cohorts, certificates, trades, or testimonials.
 
 The admin later creates or removes mentor accounts from `/admin/mentors`.

@@ -1,18 +1,9 @@
 import bcrypt from "bcryptjs";
-import { AuditLog } from "../models/AuditLog.js";
-import { Cohort } from "../models/Cohort.js";
-import { Settings } from "../models/Settings.js";
-import { User } from "../models/User.js";
-import { connectDb } from "../src/config/db.js";
 import mongoose from "mongoose";
-
-function addMonths(date, months) {
-  const next = new Date(date);
-  const day = next.getDate();
-  next.setMonth(next.getMonth() + months);
-  if (next.getDate() < day) next.setDate(0);
-  return next;
-}
+import { connectDb } from "../src/config/db.js";
+import { AuditLog } from "../src/models/AuditLog.js";
+import { User } from "../src/models/User.js";
+import { seedCourse } from "./course.js";
 
 function requirePassword(value, label) {
   if (!value || value.length < 8 || !/[a-z]/.test(value) || !/[A-Z]/.test(value) || !/\d/.test(value)) {
@@ -61,6 +52,10 @@ async function seedMentor() {
   }
   const existingMentor = await User.findOne({ role: "mentor" });
   if (existingMentor) {
+    if (existingMentor.mustChangePassword) {
+      existingMentor.mustChangePassword = false;
+      await existingMentor.save();
+    }
     console.log("Mentor already exists. Skipped.");
     return;
   }
@@ -76,38 +71,15 @@ async function seedMentor() {
     passwordHash: await bcrypt.hash(password, 12),
     role: "mentor",
     isEmailVerified: true,
-    mustChangePassword: true
+    mustChangePassword: false
   });
   await AuditLog.create({ actor: mentor._id, action: "seed.mentor", entity: "User", entityId: String(mentor._id) });
-  console.log(`Mentor created for ${email}. Password change is required on first login.`);
-}
-
-async function seedSample() {
-  if (process.env.SEED_SAMPLE !== "true") return;
-  await Settings.updateOne({ singleton: "site" }, { $setOnInsert: { singleton: "site" } }, { upsert: true });
-  const cohortCount = await Cohort.countDocuments();
-  if (cohortCount > 0) {
-    console.log("Cohorts already exist. Sample cohort skipped.");
-    return;
-  }
-  const startDate = new Date("2027-01-11T09:00:00+03:00");
-  await Cohort.create({
-    name: "January 2027 (sample)",
-    startDate,
-    endDate: addMonths(startDate, 3),
-    status: "draft",
-    mode: "both",
-    seatLimit: 20,
-    seatsTaken: 0,
-    priceFrom: 120,
-    notes: "Sample cohort from the seed script. It is not open for applications."
-  });
-  console.log("Draft sample cohort created.");
+  console.log(`Mentor created for ${email}.`);
 }
 
 await connectDb();
 await seedAdmin();
 await seedMentor();
-await seedSample();
+await seedCourse();
 await mongoose.disconnect();
 console.log("Seed finished.");

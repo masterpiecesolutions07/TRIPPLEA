@@ -22,7 +22,7 @@ export const FALLBACK_FAQS = [
   {
     id: "length",
     question: "How long is the programme?",
-    answer: "Three months, taught across 12 weeks. Month 1 is beginner material, Month 2 covers structure, entries, exits, risk, and psychology, and Month 3 is Law and Order execution, journaling, live sessions, and a written plan."
+    answer: "Three months. A year is 52 weeks, so three months is 13 weeks. Month 1 is beginner material, Month 2 covers structure, entries, exits, risk, and psychology, and Month 3 is Law and Order execution, journaling, live sessions, and a written plan."
   },
   {
     id: "start",

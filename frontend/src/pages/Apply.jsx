@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api/axiosInstance.js";
 import { useAuth } from "../context/AuthContext.jsx";
+import { feedbackMessage } from "../utils/feedback.js";
 
 const EMPTY = {
   fullName: "",
@@ -12,9 +13,6 @@ const EMPTY = {
   experience: "",
   mode: "online",
   plan: "",
-  goals: "",
-  whyJoin: "",
-  availability: "",
   heard: "",
   cohortId: "",
   consent: false
@@ -60,7 +58,7 @@ export function Apply() {
       await api.post("/public/applications", form);
       setDoneEmail(form.email);
     } catch (err) {
-      setError(err.response?.data?.message || "Could not send the application. Check that the API and MongoDB are running.");
+      setError(feedbackMessage(err, "We could not send your application just now. Please try again."));
     } finally {
       setBusy(false);
     }
@@ -139,9 +137,6 @@ export function Apply() {
                   <option value="custom">Request a custom price</option>
                 </select>
               </div>
-              <div className="field"><label htmlFor="goals">What do you want from the three months?</label><textarea id="goals" name="goals" required value={form.goals} onChange={update} /></div>
-              <div className="field"><label htmlFor="whyJoin">Why do you want to join?</label><textarea id="whyJoin" name="whyJoin" required value={form.whyJoin} onChange={update} /></div>
-              <div className="field"><label htmlFor="availability">When can you attend?</label><input id="availability" name="availability" value={form.availability} onChange={update} /></div>
               <div className="field">
                 <label htmlFor="heard">How did you hear about Tripple A?</label>
                 <select id="heard" name="heard" required value={form.heard} onChange={update}>

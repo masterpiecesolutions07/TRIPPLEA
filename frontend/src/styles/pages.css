@@ -550,8 +550,8 @@
 .filters button {
   border: 1px solid var(--border);
   border-radius: var(--radius-full);
-  background: transparent;
-  color: var(--text-muted);
+  background: var(--card-strong);
+  color: var(--text);
   min-height: 2.5rem;
   padding: 0.35rem 0.8rem;
   font-weight: 700;
@@ -655,6 +655,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-full);
   background: var(--input-bg);
+  color: var(--text);
 }
 
 .contact-list {

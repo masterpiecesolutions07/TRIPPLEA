@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { home, notifications, sessions, submitStory } from "../controllers/studentController.js";
+import { clearNotifications, home, listMyStories, notifications, removeNotification, sessions, setNotificationRead, submitStory } from "../controllers/studentController.js";
 import { protect } from "../middleware/authMiddleware.js";
 import { validate } from "../middleware/validateMiddleware.js";
-import { storySchema } from "../validators/staffValidators.js";
+import { notificationReadSchema, storySchema } from "../validators/staffValidators.js";
 
 const router = Router();
 router.use(protect);
@@ -10,6 +10,10 @@ router.use(protect);
 router.get("/home", home);
 router.get("/sessions", sessions);
 router.get("/notifications", notifications);
+router.patch("/notifications/:id", validate(notificationReadSchema), setNotificationRead);
+router.delete("/notifications/:id", removeNotification);
+router.delete("/notifications", clearNotifications);
+router.get("/stories", listMyStories);
 router.post("/stories", validate(storySchema), submitStory);
 
 export default router;

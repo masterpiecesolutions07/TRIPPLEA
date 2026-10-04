@@ -17,7 +17,7 @@ const settingsSchema = new mongoose.Schema(
     },
     stats: {
       months: { type: Number, default: 3 },
-      weeks: { type: Number, default: 12 },
+      weeks: { type: Number, default: 13 },
       attendanceModes: { type: Number, default: 2 },
       priceFrom: { type: Number, default: 120 }
     },

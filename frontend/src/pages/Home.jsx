@@ -5,6 +5,7 @@ import { FaqList } from "../components/FaqList.jsx";
 import { Countdown } from "../components/Countdown.jsx";
 import { Icon } from "../components/Icon.jsx";
 import { ProofSections } from "../components/ProofSections.jsx";
+import { PROGRAMME_WEEKS } from "../data/programmeLength.js";
 
 export function Home() {
   const [meet, setMeet] = useState(false);
@@ -42,7 +43,7 @@ export function Home() {
           <h2 id="stats-title" className="visually-hidden">The mentorship at a glance</h2>
           <div className="stat-grid card">
             <article className="stat"><b>3</b><span>Months of mentorship</span><em>Beginner to advanced</em></article>
-            <article className="stat"><b>12</b><span>Teaching weeks</span><em>One roadmap</em></article>
+            <article className="stat"><b>{PROGRAMME_WEEKS}</b><span>Weeks in 3 months</span><em>One roadmap</em></article>
             <article className="stat"><b>2</b><span>Ways to attend</span><em>Online or in person</em></article>
             <article className="stat"><b>120</b><span>USD to start</span><em>Custom pricing available</em></article>
           </div>
