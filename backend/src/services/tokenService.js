@@ -35,7 +35,7 @@ export function refreshCookieOptions(remember) {
     httpOnly: true,
     secure: crossSite,
     sameSite: crossSite ? "none" : "lax",
-    path: "/api/v1/auth",
+    path: "/",
     maxAge
   };
 }

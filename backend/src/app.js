@@ -40,6 +40,7 @@ app.use(express.json({ limit: "4mb" }));
 app.use(cookieParser());
 app.use(sanitizeBody);
 app.use("/api/v1", routes);
+app.use(routes);
 app.use(errorMiddleware);
 
 export default app;

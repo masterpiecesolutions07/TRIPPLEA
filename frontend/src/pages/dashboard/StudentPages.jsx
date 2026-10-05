@@ -71,22 +71,26 @@ export function StudentHome() {
         <p className="note">Welcome back, {name}.</p>
       </div>
       <div className="stat-row">
-        <article className="stat-tile">
+        <Link className="stat-tile stat-tile--lead" to="/student/progress">
+          <span className="stat-emoji" aria-hidden="true">📈</span>
           <b>{course?.access === "active" ? `${percent}%` : "–"}</b>
           <span>Course progress</span>
-        </article>
-        <article className="stat-tile">
+        </Link>
+        <Link className="stat-tile" to="/student/course">
+          <span className="stat-emoji" aria-hidden="true">✅</span>
           <b>{course?.access === "active" ? `${finished}/${days.length}` : "–"}</b>
           <span>Days finished</span>
-        </article>
+        </Link>
         <article className="stat-tile">
+          <span className="stat-emoji" aria-hidden="true">📝</span>
           <b>{application ? APPLICATION_STATUS[application.status] || "Received" : "None"}</b>
           <span>Application</span>
         </article>
-        <article className="stat-tile">
+        <Link className="stat-tile" to="/student/notifications">
+          <span className="stat-emoji" aria-hidden="true">🔔</span>
           <b>{notes.length}</b>
           <span>Notices</span>
-        </article>
+        </Link>
       </div>
 
       <article className="panel home-progress">
@@ -99,15 +103,16 @@ export function StudentHome() {
               {phases.map((phase) => {
                 const total = phase.modules?.length || 0;
                 const done = phase.modules?.filter((item) => item.completed).length || 0;
+                const complete = total > 0 && done === total;
                 return (
                   <li key={phase._id}>
-                    <span>{phase.title}</span>
+                    <span>{complete ? "✅ " : ""}{phase.title}</span>
                     <strong>{done}/{total}</strong>
                   </li>
                 );
               })}
             </ul>
-            {nextDay ? <p><Link className="btn btn--primary btn--small" to={`/student/course/watch/${nextDay._id}`}>Continue: {nextDay.title}</Link></p> : <p>You have finished the days that are open.</p>}
+            {nextDay ? <p><Link className="btn btn--primary btn--small" to={`/student/course/watch/${nextDay._id}`}>Continue: {nextDay.title}</Link></p> : <p>🎉 You have finished the days that are open.</p>}
           </>
         )}
         <p><Link to="/student/progress">Open the full progress list</Link></p>
@@ -261,6 +266,7 @@ export function StudentDay() {
   const [course, setCourse] = useState(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [cheer, setCheer] = useState(null);
   useEffect(() => {
     getCourse().then(setCourse).catch((err) => setError(feedbackMessage(err, "Could not load the course. Please try again.")));
   }, [moduleId]);
@@ -275,13 +281,23 @@ export function StudentDay() {
     setBusy(true);
     try {
       await completeLesson(day.watchLessonId);
-      setCourse((current) => ({
-        ...current,
-        phases: current.phases.map((item) => ({
-          ...item,
-          modules: item.modules.map((row) => row._id === day._id ? { ...row, completed: true } : row)
-        }))
+      const phases = (course.phases || []).map((item) => ({
+        ...item,
+        modules: item.modules.map((row) => row._id === day._id ? { ...row, completed: true } : row)
       }));
+      setCourse((current) => ({ ...current, phases }));
+      const updated = phases.find((item) => item._id === phase._id);
+      const phaseDone = updated?.modules?.length > 0 && updated.modules.every((item) => item.completed);
+      const courseDone = phases.length > 0 && phases.every((item) => item.modules?.length > 0 && item.modules.every((row) => row.completed));
+      if (phaseDone) {
+        setCheer({
+          emoji: courseDone ? "🏆" : "🎉",
+          title: courseDone ? "Course complete" : "Phase complete",
+          message: courseDone
+            ? "You finished every open phase. Well done. Keep the same written process when you review."
+            : `You finished ${updated.title}. Well done. The next phase is ready when you are.`
+        });
+      }
     } catch (err) {
       setError(feedbackMessage(err, "Could not save that. Please try again."));
     } finally {
@@ -292,6 +308,16 @@ export function StudentDay() {
   return (
     <>
       {error ? <p className="form-summary">{error}</p> : null}
+      {cheer ? (
+        <div className="cheer" role="status">
+          <div className="cheer__card panel">
+            <p className="cheer__emoji" aria-hidden="true">{cheer.emoji}</p>
+            <h2>{cheer.title}</h2>
+            <p>{cheer.message}</p>
+            <button className="btn btn--primary" type="button" onClick={() => setCheer(null)}>Continue</button>
+          </div>
+        </div>
+      ) : null}
       <DayPlayer
         phase={phase}
         dayId={day._id}

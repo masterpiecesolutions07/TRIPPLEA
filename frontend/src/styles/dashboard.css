@@ -204,6 +204,52 @@
   font-size: 1.7rem;
 }
 
+.stat-tile {
+  color: inherit;
+  text-decoration: none;
+  display: grid;
+  align-content: start;
+  gap: 0.2rem;
+  transition: transform 0.16s ease;
+}
+.stat-tile:hover, .stat-tile:focus-visible { transform: translateY(-2px); }
+.stat-tile:active { transform: scale(0.98); }
+.stat-emoji { font-size: 1.45rem; line-height: 1; }
+.stat-tile--lead {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--color-violet) 24%, var(--card-strong)), var(--card-strong));
+}
+.status-board { margin-top: 0.9rem; }
+.status-board h2 { margin: 0 0 0.75rem; font-size: 1.05rem; }
+.status-pills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 0.55rem;
+}
+.status-pills li {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.7rem 0.75rem;
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--color-cyan) 12%, var(--card));
+}
+.status-pills strong { font-size: 1.15rem; }
+.cheer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(11, 16, 32, 0.62);
+}
+.cheer__card { width: min(24rem, 100%); text-align: center; display: grid; gap: 0.55rem; justify-items: center; }
+.cheer__emoji { margin: 0; font-size: 3rem; line-height: 1; }
+.cheer__card h2, .cheer__card p { margin: 0; }
+
 .stat-tile span, .panel .note { color: var(--text-muted); }
 
 .table-wrap { overflow-x: auto; }
@@ -758,7 +804,8 @@
 }
 
 @media (max-width: 900px) {
-  .student-board, .home-facts { grid-template-columns: 1fr; }
+  .stat-row, .student-board { grid-template-columns: 1fr 1fr; }
+  .home-facts { grid-template-columns: 1fr; }
   .notice-page { width: min(32rem, calc(100% - 1.5rem)); }
   .home-notes, .home-notes li { text-align: center; }
 }
@@ -807,6 +854,9 @@
 }
 
 @media (max-width: 520px) {
-  .stat-row, .dash-grid { grid-template-columns: 1fr; }
+  .dash-grid { grid-template-columns: 1fr; }
+  .stat-row, .student-board, .status-pills { grid-template-columns: 1fr 1fr; }
+  .stat-tile { padding: 0.8rem 0.75rem; }
+  .stat-tile b { font-size: 1.25rem; }
   .dash__who { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 }
