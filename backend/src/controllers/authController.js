@@ -107,7 +107,7 @@ export const logout = asyncHandler(async (req, res) => {
       /* Cookie is already unusable. */
     }
   }
-  res.clearCookie(REFRESH_COOKIE, { path: "/api/v1/auth" });
+  res.clearCookie(REFRESH_COOKIE, refreshCookieOptions(false));
   res.status(204).end();
 });
 

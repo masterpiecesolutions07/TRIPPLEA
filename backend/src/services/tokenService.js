@@ -30,10 +30,11 @@ export function verifyRefreshToken(token) {
 
 export function refreshCookieOptions(remember) {
   const maxAge = remember ? 30 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000;
+  const crossSite = env.nodeEnv === "production" || String(env.publicUrl).startsWith("https://");
   return {
     httpOnly: true,
-    secure: env.nodeEnv === "production",
-    sameSite: "lax",
+    secure: crossSite,
+    sameSite: crossSite ? "none" : "lax",
     path: "/api/v1/auth",
     maxAge
   };

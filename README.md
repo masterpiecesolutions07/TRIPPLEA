@@ -130,4 +130,4 @@ API, from the repo root, with `NODE_ENV=production` and the real `MONGO_URI`, JW
 npm run start -w backend
 ```
 
-`FRONTEND_URL` must be the public site origin, not `http://localhost:5173`, or the browser will block API calls. On Render, the API address is `RENDER_EXTERNAL_URL`. Opening the service URL returns that live link. Set `API_URL` only if you host the API somewhere else.
+The live site is [https://tripplea-1.onrender.com](https://tripplea-1.onrender.com). The live API is [https://tripplea-ki19.onrender.com](https://tripplea-ki19.onrender.com). A production build of the site calls `https://tripplea-ki19.onrender.com/api/v1`. On the API, set `FRONTEND_URL` to `https://tripplea-1.onrender.com` (localhost can stay in the list for local work). Redeploy both services after changing those values. The site rewrite in `frontend/public/_redirects` keeps paths such as `/login` on the live site.

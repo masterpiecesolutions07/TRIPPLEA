@@ -14,8 +14,19 @@ const app = express();
 const uploads = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../uploads");
 
 app.set("trust proxy", 1);
-app.use(helmet());
-app.use(cors({ origin: env.frontendUrl, credentials: true }));
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
+app.use(cors({
+  origin(origin, callback) {
+    if (!origin || env.allowedOrigins.includes(origin)) {
+      callback(null, true);
+      return;
+    }
+    callback(null, false);
+  },
+  credentials: true
+}));
 app.use(morgan(env.nodeEnv === "test" ? "tiny" : "dev"));
 app.get("/", (_req, res) => {
   res.json({

@@ -18,8 +18,22 @@ export function readEnv(source = process.env) {
     accessExpires: source.ACCESS_EXPIRES || "15m",
     refreshExpires: source.REFRESH_EXPIRES || "7d",
     frontendUrl: source.FRONTEND_URL || "http://localhost:5173",
+    allowedOrigins: allowedOrigins(source),
     publicUrl: publicAddress(source, Number(source.PORT) || 5000)
   };
+}
+
+function allowedOrigins(source) {
+  const fromEnv = String(source.FRONTEND_URL || "")
+    .split(",")
+    .map((item) => item.trim().replace(/\/$/, ""))
+    .filter(Boolean);
+  return [...new Set([
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://tripplea-1.onrender.com",
+    ...fromEnv
+  ])];
 }
 
 function publicAddress(source, port) {
