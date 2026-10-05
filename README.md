@@ -45,6 +45,9 @@ Open `backend/.env` and replace the placeholder values. The API refuses to start
 | `MENTOR_NAME` | Optional. Leave empty if you do not want a mentor account yet. |
 | `MENTOR_EMAIL` | Optional. Set together with the other two mentor fields, or leave all three empty. |
 | `MENTOR_PASSWORD` | Optional. Same password rules as the admin password. |
+| `CLOUDINARY_CLOUD_NAME` | From the Cloudinary dashboard. Leave empty to keep photos on this computer. |
+| `CLOUDINARY_API_KEY` | From the same Cloudinary dashboard. |
+| `CLOUDINARY_API_SECRET` | From the same Cloudinary dashboard. Do not share it. |
 
 Do not commit `backend/.env`. It holds secrets.
 
@@ -127,4 +130,4 @@ API, from the repo root, with `NODE_ENV=production` and the real `MONGO_URI`, JW
 npm run start -w backend
 ```
 
-`FRONTEND_URL` must be the public site origin, not `http://localhost:5173`, or the browser will block API calls.
+`FRONTEND_URL` must be the public site origin, not `http://localhost:5173`, or the browser will block API calls. On Render, the API address is `RENDER_EXTERNAL_URL`. Opening the service URL returns that live link. Set `API_URL` only if you host the API somewhere else.

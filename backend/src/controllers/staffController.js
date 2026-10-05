@@ -441,12 +441,12 @@ function slugify(title) {
 }
 
 export const createCertificate = asyncHandler(async (req, res) => {
-  const url = await saveImage(req.body.image, "certificates");
+  const image = await saveImage(req.body.image, "certificates");
   const item = await Certificate.create({
     title: "Certificate",
     category: "other",
     consent: true,
-    image: { url },
+    image,
     status: "published",
     uploadedBy: req.user._id
   });
@@ -455,9 +455,9 @@ export const createCertificate = asyncHandler(async (req, res) => {
 });
 
 export const createTrade = asyncHandler(async (req, res) => {
-  const url = await saveImage(req.body.image, "trades");
+  const image = await saveImage(req.body.image, "trades");
   const item = await Trade.create({
-    images: [{ url }],
+    images: [image],
     published: true,
     postedBy: req.user._id
   });

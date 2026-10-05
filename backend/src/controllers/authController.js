@@ -116,8 +116,7 @@ export const me = asyncHandler(async (req, res) => {
 });
 
 export const updateAvatar = asyncHandler(async (req, res) => {
-  const url = await saveImage(req.body.image, "avatars");
-  req.user.avatar = { url, publicId: "" };
+  req.user.avatar = await saveImage(req.body.image, "avatars");
   await req.user.save();
   res.json({ user: req.user.toPublic() });
 });

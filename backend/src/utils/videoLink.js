@@ -85,11 +85,24 @@ export function parseVideoLink(raw) {
   throw new ApiError(400, VIDEO_HINT);
 }
 
+function storedImage(url) {
+  if (/^\/uploads\/course\/[A-Za-z0-9._-]+$/.test(url)) return url;
+  let parsed;
+  try {
+    parsed = new URL(url);
+  } catch {
+    return "";
+  }
+  if (parsed.protocol !== "https:" || parsed.hostname !== "res.cloudinary.com") return "";
+  if (!/^\/[^/]+\/image\/upload\/.+/.test(parsed.pathname)) return "";
+  return parsed.toString();
+}
+
 export function safeResource(resource) {
   const title = String(resource?.title || "").trim();
   if (resource?.kind === "file") {
-    const url = String(resource.url || "").trim();
-    if (!/^\/uploads\/course\/[A-Za-z0-9._-]+$/.test(url)) throw new ApiError(400, "Choose a JPG or PNG photo.");
+    const url = storedImage(String(resource.url || "").trim());
+    if (!url) throw new ApiError(400, "Choose a JPG or PNG photo.");
     return { title, kind: "file", url };
   }
   const url = httpsUrl(resource?.url, LINK_HINT);
@@ -99,8 +112,9 @@ export function safeResource(resource) {
 }
 
 export function safeCover(value) {
-  const url = String(value || "").trim();
-  if (!url) return { url: "", publicId: "" };
-  if (!/^\/uploads\/course\/[A-Za-z0-9._-]+$/.test(url)) throw new ApiError(400, "Choose a JPG or PNG photo.");
+  const raw = String(value || "").trim();
+  if (!raw) return { url: "", publicId: "" };
+  const url = storedImage(raw);
+  if (!url) throw new ApiError(400, "Choose a JPG or PNG photo.");
   return { url, publicId: url };
 }

@@ -15,7 +15,7 @@ export const phaseSchema = z.object({
   title: z.string().trim().min(2, "Enter a title.").max(120, "Use a shorter title."),
   description: text(2000),
   status: statusField,
-  coverUrl: z.string().trim().max(300, "Choose a JPG or PNG photo.").optional().or(z.literal(""))
+  coverUrl: z.string().trim().max(500, "Choose a JPG or PNG photo.").optional().or(z.literal(""))
 });
 
 export const moduleSchema = phaseSchema.extend({

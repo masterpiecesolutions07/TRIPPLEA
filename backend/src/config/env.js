@@ -17,8 +17,16 @@ export function readEnv(source = process.env) {
     jwtRefreshSecret: source.JWT_REFRESH_SECRET,
     accessExpires: source.ACCESS_EXPIRES || "15m",
     refreshExpires: source.REFRESH_EXPIRES || "7d",
-    frontendUrl: source.FRONTEND_URL || "http://localhost:5173"
+    frontendUrl: source.FRONTEND_URL || "http://localhost:5173",
+    publicUrl: publicAddress(source, Number(source.PORT) || 5000)
   };
+}
+
+function publicAddress(source, port) {
+  const configured = String(source.RENDER_EXTERNAL_URL || source.API_URL || "").trim().replace(/\/$/, "");
+  if (configured) return configured;
+  if (source.NODE_ENV === "production") return "";
+  return `http://127.0.0.1:${port}`;
 }
 
 export const env = readEnv();

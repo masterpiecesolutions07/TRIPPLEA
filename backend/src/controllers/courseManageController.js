@@ -195,8 +195,8 @@ export const updateCourse = asyncHandler(async (req, res) => {
 });
 
 export const uploadCourseFile = asyncHandler(async (req, res) => {
-  const url = await saveImage(req.body.image, "course");
-  res.status(201).json({ url });
+  const image = await saveImage(req.body.image, "course");
+  res.status(201).json({ url: image.url });
 });
 
 export const createPhase = asyncHandler(async (req, res) => {

@@ -17,6 +17,13 @@ app.set("trust proxy", 1);
 app.use(helmet());
 app.use(cors({ origin: env.frontendUrl, credentials: true }));
 app.use(morgan(env.nodeEnv === "test" ? "tiny" : "dev"));
+app.get("/", (_req, res) => {
+  res.json({
+    ok: true,
+    service: "Tripple A API",
+    url: env.publicUrl || null
+  });
+});
 app.use("/uploads", express.static(uploads));
 app.use(express.json({ limit: "4mb" }));
 app.use(cookieParser());
